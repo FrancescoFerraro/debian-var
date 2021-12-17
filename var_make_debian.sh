@@ -419,7 +419,7 @@ function make_freertos_variscite()
     cp -r ${G_FREERTOS_VAR_SRC_DIR} ${G_FREERTOS_VAR_BUILD_DIR}
 
     # Copy and patch hello_world demo to disable_cache demo
-    if [ -e "${G_VARISCITE_PATH}/${MACHINE}/${DISABLE_CACHE_PATCH}" ]; then
+    if [[ -f "${G_VARISCITE_PATH}/${MACHINE}/${DISABLE_CACHE_PATCH}" ]]; then
         # Copy hello_world demo
         cp -r ${G_FREERTOS_VAR_BUILD_DIR}/boards/${CM_BOARD}/demo_apps/hello_world/ ${G_FREERTOS_VAR_BUILD_DIR}/boards/${CM_BOARD}/demo_apps/disable_cache
         # Rename hello_world strings to disable_cache
@@ -428,23 +428,23 @@ function make_freertos_variscite()
         find ${G_FREERTOS_VAR_BUILD_DIR}/boards/${CM_BOARD}/demo_apps/disable_cache/ -name '*hello_world*' -exec sh -c 'mv "$1" "$(echo "$1" | sed s/hello_world/disable_cache/)"' _ {} \;
     fi
 
-    # Build all demos in CM_DEMOS
-    for CM_DEMO in ${CM_DEMOS}; do
-        compile_fw "${G_FREERTOS_VAR_BUILD_DIR}/boards/${CM_BOARD}/${CM_DEMO}/armgcc"
+    for cm_board in ${CM_BOARD}; do
+        # Build all demos in CM_DEMOS
+        for CM_DEMO in ${CM_DEMOS}; do
+            compile_fw "${G_FREERTOS_VAR_BUILD_DIR}/boards/${cm_board}/${CM_DEMO}/armgcc"
+        done
     done
 
-    if [ ! -z "${DISABLE_CACHE_PATCH}" ]; then
-        # Build firmware to reset cache
-        if [ -e "${G_VARISCITE_PATH}/${MACHINE}/${DISABLE_CACHE_PATCH}" ]; then
-            # Apply patch to disable cache for machine
-            cd $G_FREERTOS_VAR_BUILD_DIR && git apply ${G_VARISCITE_PATH}/${MACHINE}/${DISABLE_CACHE_PATCH}
+    # Build firmware to reset cache
+    if [[ -f "${G_VARISCITE_PATH}/${MACHINE}/${DISABLE_CACHE_PATCH}" ]]; then
+        # Apply patch to disable cache for machine
+        cd $G_FREERTOS_VAR_BUILD_DIR && git apply ${G_VARISCITE_PATH}/${MACHINE}/${DISABLE_CACHE_PATCH}
 
-            # Build the firmware
-            for CM_DEMO in ${CM_DEMOS_DISABLE_CACHE}; do
-                    compile_fw "${G_FREERTOS_VAR_BUILD_DIR}/boards/${CM_BOARD}/${CM_DEMO}/armgcc"
-            done
+        # Build the firmware
+        for CM_DEMO in ${CM_DEMOS_DISABLE_CACHE}; do
+                compile_fw "${G_FREERTOS_VAR_BUILD_DIR}/boards/${CM_BOARD}/${CM_DEMO}/armgcc"
+        done
         fi
-    fi
     cd -
 }
 
