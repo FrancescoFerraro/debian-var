@@ -69,6 +69,9 @@ readonly VAR_WIRELESS_UTILS_DIR="${G_META_VARISCITE_BSP_COMMON_SRC_DIR}/recipes-
 # GPIO Utils
 readonly VAR_GPIO_UTILS_DIR="${G_META_VARISCITE_BSP_COMMON_SRC_DIR}/recipes-support/var-gpio-utils/var-gpio-utils"
 
+# pm utils
+readonly PM_UTILS_DIR="${G_META_VARISCITE_BSP_IMX_SRC_DIR}/recipes-bsp/pm-utils/pm-utils"
+
 # Linux kernel
 readonly KERNEL_IMAGE_TYPE="Image.gz"
 readonly KERNEL_BOOT_IMAGE_SRC="arch/arm64/boot/"
