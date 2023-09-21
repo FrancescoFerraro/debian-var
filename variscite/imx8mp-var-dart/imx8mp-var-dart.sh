@@ -27,7 +27,7 @@ git_repos=(
 readonly G_META_VARISCITE_BSP_COMMON_SRC_DIR="${DEF_SRC_DIR}/meta-variscite-bsp-common"
 readonly G_META_VARISCITE_BSP_COMMON_GIT="https://github.com/varigit/meta-variscite-bsp-common"
 readonly G_META_VARISCITE_BSP_COMMON_BRANCH="mickledore-var01"
-readonly G_META_VARISCITE_BSP_COMMON_REV="61a9f1e114642f144ad05a931eff9fa7c3bf81ef"
+readonly G_META_VARISCITE_BSP_COMMON_REV="626121f44b4b84c31a08b83dc0d60611955f2017"
 
 # meta-variscite-bsp-imx
 readonly G_META_VARISCITE_BSP_IMX_SRC_DIR="${DEF_SRC_DIR}/meta-variscite-bsp-imx"
