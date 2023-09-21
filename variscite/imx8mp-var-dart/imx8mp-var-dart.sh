@@ -50,9 +50,9 @@ readonly G_IMXBOOT_PATCHES="${G_VARISCITE_PATH}/${MACHINE}/imx-boot-tools/imx-bo
 
 # U-Boot
 readonly G_UBOOT_SRC_DIR="${DEF_SRC_DIR}/uboot"
-readonly G_UBOOT_GIT="https://github.com/varigit/uboot-imx.git"
+readonly G_UBOOT_GIT="https://github.com/FrancescoFerraro/uboot-imx.git"
 readonly G_UBOOT_BRANCH="lf_v2023.04_var01"
-readonly G_UBOOT_REV="341b473039306055c34e154af070e941d7cafb14"
+readonly G_UBOOT_REV="c24b0c4a78a8b387df64577a0fb0914f3144071b"
 G_UBOOT_DEF_CONFIG_MMC="imx8mp_var_dart_defconfig"
 readonly G_UBOOT_NAME_FOR_EMMC='imx-boot-sd.bin'
 readonly UBOOT_FW_UTILS_DIR="${G_META_VARISCITE_BSP_IMX_SRC_DIR}/recipes-bsp/u-boot/u-boot-fw-utils/${MACHINE}"
